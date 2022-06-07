@@ -14,7 +14,7 @@ public class EventListener : MonoBehaviour
         if (_introUI.transform.Find("BtnPlay") is not null)
         {
             Button btnPlay = _introUI.transform.Find("BtnPlay").GetComponent<Button>();
-            // btnPlay.onClick.AddListener(PlayButton);
+            // btnPlay.onClick.AddListener(PlayButton);     // 이벤트 리스너 등록
         }
     }
 

@@ -29,6 +29,7 @@ public class ScoreManager : MonoBehaviour
         UpdatePlayUIGameScore();
     }
 
+    // 점수 초기화
     void initScore()
     {
         if ( _playUI.activeSelf && _playUI.transform.Find(_cfgMgr.txtScoreNumber) is not null )
@@ -38,6 +39,7 @@ public class ScoreManager : MonoBehaviour
             _txtLastScoreNumber = _endUI.transform.Find(_cfgMgr.txtLastScoreNumber).GetComponent<Text>();
     }
 
+    // 현재 점수
     public int getGameScore()
     {
         return _gameScore;
@@ -55,10 +57,10 @@ public class ScoreManager : MonoBehaviour
         _txtScoreNumber = _endUI.transform.Find(scoreObjNm).GetComponent<Text>();
         _txtScoreNumber.text = _gameScore.ToString();
     }
-    public void UpdatePlayUIGameScore(string scoreObjNm, int digit)
+    public void UpdatePlayUIGameScore(string scoreObjNm, int digit=0)
     {
         _txtScoreNumber = _endUI.transform.Find(scoreObjNm).GetComponent<Text>();
-        _txtScoreNumber.text = _gameScore.ToString( "D" + digit.ToString() );
+        _txtScoreNumber.text = (digit > 0 ? _gameScore.ToString( "D" + digit.ToString() ) : _gameScore.ToString() );
     }
 
     // 게임 최종 스코어 표시
@@ -73,10 +75,10 @@ public class ScoreManager : MonoBehaviour
         _txtLastScoreNumber.text = _gameScore.ToString();
     }
 
-    public void viewEndUIGameScore(string scoreObjNm, int digit)
+    public void viewEndUIGameScore(string scoreObjNm, int digit=0)
     {
         _txtLastScoreNumber = _endUI.transform.Find(scoreObjNm).GetComponent<Text>();
-        _txtLastScoreNumber.text = _gameScore.ToString( "D" + digit.ToString() );
+        _txtLastScoreNumber.text = (digit > 0 ? _gameScore.ToString( "D" + digit.ToString() ) : _gameScore.ToString() );
     }
 
     // 게임 스코어 획득

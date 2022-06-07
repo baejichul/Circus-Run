@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ConfigManager : MonoBehaviour
 {
-
     // Path
     public string defaultResourceArtPath { get; set; } = "Art";
     public string defaultResourceGUIPath { get; set; } = "GUI";

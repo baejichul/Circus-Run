@@ -81,19 +81,71 @@ public class GameManager : MonoBehaviour
         _sndMgr.PlayGame();
         SceneManager.LoadScene(_cfgMgr.mainSceneName);
     }
-    
+
+    // 버튼 게임오브젝트 활성화 변경
+    public void setBtnObjActive(GameObject gObjUI, string btnNm, bool flag)
+    {
+        if (gObjUI is not null) 
+            gObjUI.transform.Find(btnNm).gameObject.SetActive(flag);
+        
+    }
+
+    // 버튼 게임오브젝트 활성화 변경
+    public void setBtnObjActive(Transform trans, bool flag)
+    {
+        if (trans is not null)
+            trans.gameObject.SetActive(flag);
+    }
+
+    // 버튼 게임오브젝트 활성화 변경
+    public void setBtnObjActive(GameObject gObj, bool flag)
+    {
+        if (gObj is not null)
+            gObj.SetActive(flag);
+    }
+
+    // 버튼의 이미지콤포넌트 이미지 변경하기
+    public void loadImageSprite(GameObject gObjUI, string btnNm, string resourcePath, int idx = 0)
+    {
+        if (gObjUI is not null)
+        {
+            Image img = gObjUI.transform.Find(btnNm).GetComponent<Image>();
+            img.sprite = Resources.LoadAll<Sprite>(resourcePath)[idx];
+        }
+    }
+
+    // 버튼의 이미지콤포넌트 이미지 변경하기
+    public void loadImageSprite(Transform trans, string resourcePath, int idx = 0)
+    {
+        if (trans is not null)
+        {
+            Image img = trans.GetComponent<Image>();
+            img.sprite = Resources.LoadAll<Sprite>(resourcePath)[idx];
+        }
+    }
+
+    // 버튼의 이미지콤포넌트 이미지 변경하기
+    public void loadImageSprite(Image img, string resourcePath, int idx = 0)
+    {
+        // Debug.Log("resourcePath = " + resourcePath + " idx = " + idx);
+        if (img is not null)
+            img.sprite = Resources.LoadAll<Sprite>(resourcePath)[idx];
+    }
+
     // 게임 시작버튼
     public void OnClick_BtnStart()
     {
         //  EventListener 에서도 처리 가능하다.
 
         // 이미지 직접 변경방법 1
-        // _introUI.transform.Find("BtnPlay").gameObject.SetActive(false);
-        // _introUI.transform.Find("BtnPlayOn").gameObject.SetActive(true);
+        // setBtnObjActive(_introUI, "BtnPlay", false);
+        // setBtnObjActive(_introUI, "BtnPlayOn", true);
 
         // 이미지 직접 변경방법 2
-        //Image img = _introUI.transform.Find("BtnPlay").GetComponent<Image>();
-        //img.sprite = Resources.LoadAll<Sprite>(_cfgMgr.defaultResourceGUIPath + "/playT")[0];
+        // loadImageSprite(_introUI.transform.Find("BtnPlay").GetComponent<Image>(), _cfgMgr.defaultResourceGUIPath + "/playT");
+
+        // 이미지 직접 변경방법 3
+        // 유니티에서 Button의 Transition을 Sprite Swap으로 변경후 Pressed Sprite를 설정한다.
 
         PlayGame();
     }
@@ -104,8 +156,31 @@ public class GameManager : MonoBehaviour
         RePlayGame();
     }
 
-    private void OnMouseOver()
+    // 게임 음악소거
+    public void OnClick_BtnSoundMute() 
     {
-        
+        loadImageSprite(_playUI.transform.Find("BtnSoundMute").GetComponent<Image>(), _cfgMgr.defaultResourceGUIPath + "/soundmute");
+        _sndMgr.Mute(_cfgMgr.audSrcPlay);
+    }
+
+    // 게임 음악재생
+    public void OnClick_BtnSoundUnMute()
+    {
+        loadImageSprite(_playUI.transform.Find("BtnSoundMute").GetComponent<Image>(), _cfgMgr.defaultResourceGUIPath + "/soundunmute");
+        _sndMgr.UnMute(_cfgMgr.audSrcPlay);
+    }
+
+    // 게임 Mute변경
+    public void OnClick_ChangeBtnMute()
+    {
+        if ( _sndMgr.getMute(_cfgMgr.audSrcPlay) )
+        {
+            loadImageSprite(_playUI.transform.Find("BtnSoundMute").GetComponent<Image>(), _cfgMgr.defaultResourceGUIPath + "/soundmute");
+        }
+        else
+        {
+            loadImageSprite(_playUI.transform.Find("BtnSoundMute").GetComponent<Image>(), _cfgMgr.defaultResourceGUIPath + "/soundunmute");
+        }
+        _sndMgr.ChangeMute(_cfgMgr.audSrcPlay);
     }
 }
