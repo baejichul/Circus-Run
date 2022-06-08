@@ -31,7 +31,7 @@ public class ConfigManager : MonoBehaviour
     public float playerMovePosX { get; set; } = 0.01f;    
     public float playerMinPosX { get; set; } = -6.9f;
     public float playerMaxPosX { get; set; } = 7.1f;
-    public Vector2 playerAddForce { get; set; } = new Vector2(0.0f, 50.0f);
+    public Vector2 playerAddForce { get; set; } = new Vector2(0.0f, 30.0f);
     public float playerAddVelocity { get; set; } = 8.0f;
 
 

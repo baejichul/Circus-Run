@@ -49,20 +49,23 @@ public class PlayerManager : MonoBehaviour
     {
         Vector3 pos = transform.position;
 
+        // Move Left
         if ( Input.GetKey(KeyCode.LeftArrow))
         {
             float posX = Mathf.Max(pos.x - _cfgMgr.playerMovePosX, _cfgMgr.playerMinPosX);
             transform.position = new Vector3(posX, pos.y, pos.z);
         }
+        // Move Right
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             float posX = Mathf.Min(pos.x + _cfgMgr.playerMovePosX, _cfgMgr.playerMaxPosX);
             transform.position = new Vector3(posX, pos.y, pos.z);
         }
 
+        // Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Debug.Log(pos.y + "<= " +  _cfgMgr.playerInitPos.y);
+            // ¹Ù´Ú¿¡ ´ê¾ÒÀ» °æ¿ì
             if (pos.y <= _cfgMgr.playerInitPos.y)
             {
                 Vector2 vec = _rigid.velocity;

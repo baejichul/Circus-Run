@@ -1750,6 +1750,9 @@ MonoBehaviour:
   _introUI: {fileID: 407466689}
   _playUI: {fileID: 888405821}
   _endUI: {fileID: 146845372}
+  _cfgMgr: {fileID: 0}
+  _gMgr: {fileID: 0}
+  _sndMgr: {fileID: 0}
 --- !u!1 &735911291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4096,9 +4099,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690244239}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnClick_BtnStart
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4785,9 +4788,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690244239}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnClick_ChangeBtnMute
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
