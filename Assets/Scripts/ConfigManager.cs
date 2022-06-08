@@ -27,5 +27,13 @@ public class ConfigManager : MonoBehaviour
     public string mainSceneName { get; set; } = "CircusRun";
 
     // Player
-    public Vector3 playerInitPos { get; set; } = new Vector3(-6.1f, -2.036812f, 0);
+    public Vector3 playerInitPos { get; set; } = new Vector3(-6.1f, -1.75f, 0);
+    public float playerMovePosX { get; set; } = 0.01f;    
+    public float playerMinPosX { get; set; } = -6.9f;
+    public float playerMaxPosX { get; set; } = 7.1f;
+    public Vector2 playerAddForce { get; set; } = new Vector2(0.0f, 50.0f);
+    public float playerAddVelocity { get; set; } = 8.0f;
+
+
+
 }

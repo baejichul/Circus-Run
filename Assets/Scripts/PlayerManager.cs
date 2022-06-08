@@ -9,18 +9,23 @@ public class PlayerManager : MonoBehaviour
     public GameObject _endUI;
 
     public ConfigManager _cfgMgr;
+    public SoundManager _sndMgr;
     public Animator _ani;
+    public Rigidbody2D _rigid;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _cfgMgr = FindObjectOfType<ConfigManager>();
+        _sndMgr = FindObjectOfType<SoundManager>();
+        _rigid = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        movePlayerPos();
     }
 
     // 플레이어 위치 초기화
@@ -37,6 +42,36 @@ public class PlayerManager : MonoBehaviour
     public void setRigidbodySimulate(bool val)
     {
         gameObject.GetComponent<Rigidbody2D>().simulated = val;
+    }
+
+    // 플레이어 위치 이동
+    public void movePlayerPos()
+    {
+        Vector3 pos = transform.position;
+
+        if ( Input.GetKey(KeyCode.LeftArrow))
+        {
+            float posX = Mathf.Max(pos.x - _cfgMgr.playerMovePosX, _cfgMgr.playerMinPosX);
+            transform.position = new Vector3(posX, pos.y, pos.z);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            float posX = Mathf.Min(pos.x + _cfgMgr.playerMovePosX, _cfgMgr.playerMaxPosX);
+            transform.position = new Vector3(posX, pos.y, pos.z);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Debug.Log(pos.y + "<= " +  _cfgMgr.playerInitPos.y);
+            if (pos.y <= _cfgMgr.playerInitPos.y)
+            {
+                Vector2 vec = _rigid.velocity;
+                _rigid.AddForce(_cfgMgr.playerAddForce);
+                _rigid.velocity = new Vector2(vec.x, _cfgMgr.playerAddVelocity);
+
+                _sndMgr.Play(_cfgMgr.audSrcJump);
+            }
+        }
     }
 
 }

@@ -90,14 +90,12 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // 버튼 게임오브젝트 활성화 변경
     public void setBtnObjActive(Transform trans, bool flag)
     {
         if (trans is not null)
             trans.gameObject.SetActive(flag);
     }
 
-    // 버튼 게임오브젝트 활성화 변경
     public void setBtnObjActive(GameObject gObj, bool flag)
     {
         if (gObj is not null)
@@ -114,7 +112,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 버튼의 이미지콤포넌트 이미지 변경하기
     public void loadImageSprite(Transform trans, string resourcePath, int idx = 0)
     {
         if (trans is not null)
@@ -124,7 +121,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 버튼의 이미지콤포넌트 이미지 변경하기
     public void loadImageSprite(Image img, string resourcePath, int idx = 0)
     {
         // Debug.Log("resourcePath = " + resourcePath + " idx = " + idx);
@@ -173,6 +169,14 @@ public class GameManager : MonoBehaviour
     // 게임 Mute변경
     public void OnClick_ChangeBtnMute()
     {
+        // 스페이스바를 누를경우 예외 처리
+        // Focus, Blur 처리를 확인해 봐야 할 거 같음
+        if ( Input.GetKey(KeyCode.Space) )
+        {
+            // Debug.Log("KeyCode.Space is pressed!!");
+            return;
+        }
+
         if ( _sndMgr.getMute(_cfgMgr.audSrcPlay) )
         {
             loadImageSprite(_playUI.transform.Find("BtnSoundMute").GetComponent<Image>(), _cfgMgr.defaultResourceGUIPath + "/soundmute");
