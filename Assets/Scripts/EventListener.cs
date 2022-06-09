@@ -39,10 +39,12 @@ public class EventListener : MonoBehaviour
             Button btnRePlay = _endUI.transform.Find("BtnRePlay").GetComponent<Button>();
             btnRePlay.onClick.AddListener(RePlayGame);
         }
+
     }
 
     void Update()
     {
+        
     }
 
     // 게임 시작
@@ -96,6 +98,5 @@ public class EventListener : MonoBehaviour
     {
         _gMgr.RePlayGame();
     }
-
 
 }

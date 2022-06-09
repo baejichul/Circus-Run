@@ -82,45 +82,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(_cfgMgr.mainSceneName);
     }
 
-    // 버튼 게임오브젝트 활성화 변경
-    public void setBtnObjActive(GameObject gObjUI, string btnNm, bool flag)
-    {
-        if (gObjUI is not null) 
-            gObjUI.transform.Find(btnNm).gameObject.SetActive(flag);
-        
-    }
-
-    public void setBtnObjActive(Transform trans, bool flag)
-    {
-        if (trans is not null)
-            trans.gameObject.SetActive(flag);
-    }
-
-    public void setBtnObjActive(GameObject gObj, bool flag)
-    {
-        if (gObj is not null)
-            gObj.SetActive(flag);
-    }
-
     // 버튼의 이미지콤포넌트 이미지 변경하기
-    public void loadImageSprite(GameObject gObjUI, string btnNm, string resourcePath, int idx = 0)
-    {
-        if (gObjUI is not null)
-        {
-            Image img = gObjUI.transform.Find(btnNm).GetComponent<Image>();
-            img.sprite = Resources.LoadAll<Sprite>(resourcePath)[idx];
-        }
-    }
-
-    public void loadImageSprite(Transform trans, string resourcePath, int idx = 0)
-    {
-        if (trans is not null)
-        {
-            Image img = trans.GetComponent<Image>();
-            img.sprite = Resources.LoadAll<Sprite>(resourcePath)[idx];
-        }
-    }
-
     public void loadImageSprite(Image img, string resourcePath, int idx = 0)
     {
         // Debug.Log("resourcePath = " + resourcePath + " idx = " + idx);

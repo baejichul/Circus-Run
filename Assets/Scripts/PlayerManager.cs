@@ -77,4 +77,10 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    // 콜라이더 이벤트 처리
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Debug.Log("player collision nm = " + collision.gameObject.name);
+    }
+
 }
