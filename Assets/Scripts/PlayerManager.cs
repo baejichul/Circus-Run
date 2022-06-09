@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject _playUI;
     public GameObject _endUI;
 
+    public GameManager _gMgr;
     public ConfigManager _cfgMgr;
     public SoundManager _sndMgr;
     public Animator _ani;
@@ -17,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _gMgr = FindObjectOfType<GameManager>();
         _cfgMgr = FindObjectOfType<ConfigManager>();
         _sndMgr = FindObjectOfType<SoundManager>();
         _rigid = GetComponent<Rigidbody2D>();
@@ -47,32 +49,36 @@ public class PlayerManager : MonoBehaviour
     // 플레이어 위치 이동
     public void movePlayerPos()
     {
-        Vector3 pos = transform.position;
 
-        // Move Left
-        if ( Input.GetKey(KeyCode.LeftArrow))
+        if (_playUI.activeSelf == true)
         {
-            float posX = Mathf.Max(pos.x - _cfgMgr.playerMovePosX, _cfgMgr.playerMinPosX);
-            transform.position = new Vector3(posX, pos.y, pos.z);
-        }
-        // Move Right
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            float posX = Mathf.Min(pos.x + _cfgMgr.playerMovePosX, _cfgMgr.playerMaxPosX);
-            transform.position = new Vector3(posX, pos.y, pos.z);
-        }
+            Vector3 pos = transform.position;
 
-        // Jump
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // 바닥에 닿았을 경우
-            if (pos.y <= _cfgMgr.playerInitPos.y)
+            // Move Left
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
-                Vector2 vec = _rigid.velocity;
-                _rigid.AddForce(_cfgMgr.playerAddForce);
-                _rigid.velocity = new Vector2(vec.x, _cfgMgr.playerAddVelocity);
+                float posX = Mathf.Max(pos.x - _cfgMgr.playerMovePosX, _cfgMgr.playerMinPosX);
+                transform.position = new Vector3(posX, pos.y, pos.z);
+            }
+            // Move Right
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                float posX = Mathf.Min(pos.x + _cfgMgr.playerMovePosX, _cfgMgr.playerMaxPosX);
+                transform.position = new Vector3(posX, pos.y, pos.z);
+            }
 
-                _sndMgr.Play(_cfgMgr.audSrcJump);
+            // Jump
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // 바닥에 닿았을 경우
+                if (pos.y <= _cfgMgr.playerInitPos.y)
+                {
+                    Vector2 vec = _rigid.velocity;
+                    _rigid.AddForce(_cfgMgr.playerAddForce);
+                    _rigid.velocity = new Vector2(vec.x, _cfgMgr.playerAddVelocity);
+
+                    _sndMgr.Play(_cfgMgr.audSrcJump);
+                }
             }
         }
     }
@@ -81,6 +87,10 @@ public class PlayerManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Debug.Log("player collision nm = " + collision.gameObject.name);
+        string collisionNm = collision.gameObject.name;
+
+        if ( collisionNm.Equals("FireFloor") || collisionNm.StartsWith("FireRing") )
+            _gMgr.EndGame();
     }
 
 }

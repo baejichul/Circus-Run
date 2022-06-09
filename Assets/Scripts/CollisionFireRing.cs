@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HudleFireRing : HudleManager
+public class CollisionFireRing : CollisionManager
 {
     protected override void Start()
     {
-        _cfg = FindObjectOfType<ConfigManager>();
+        _cfgMgr = FindObjectOfType<ConfigManager>();
         _defaultHudlePosX = transform.parent.transform.position;
     }
 

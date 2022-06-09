@@ -34,17 +34,12 @@ public class EventListener : MonoBehaviour
             btnSoundMute.onClick.AddListener(ChangeBtnMute);
         }
 
-        if (_endUI.transform.Find("BtnRePlay") is not null)
+        if (_endUI.transform.Find("BtnRetry") is not null)
         {
-            Button btnRePlay = _endUI.transform.Find("BtnRePlay").GetComponent<Button>();
+            Button btnRePlay = _endUI.transform.Find("BtnRetry").GetComponent<Button>();
             btnRePlay.onClick.AddListener(RePlayGame);
         }
 
-    }
-
-    void Update()
-    {
-        
     }
 
     // 게임 시작

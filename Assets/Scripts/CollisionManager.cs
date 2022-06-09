@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HudleManager : MonoBehaviour
+public class CollisionManager : MonoBehaviour
 {
     public GameObject _introUI;
     public GameObject _playUI;
     public GameObject _endUI;
 
-    public ConfigManager _cfg;
+    public ConfigManager _cfgMgr;
+    public SoundManager _sndMgr;
     public Vector3 _defaultHudlePosX;
 
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        _cfg = FindObjectOfType<ConfigManager>();
+        _cfgMgr = FindObjectOfType<ConfigManager>();
+        _sndMgr = FindObjectOfType<SoundManager>();
         _defaultHudlePosX = transform.position;
     }
 
@@ -31,9 +33,9 @@ public class HudleManager : MonoBehaviour
         if (_playUI.activeSelf)
         {
             Vector3 pos = transform.position;
-            transform.position = new Vector3(pos.x - _cfg.hudleMovePosX, pos.y, pos.z);
+            transform.position = new Vector3(pos.x - _cfgMgr.hudleMovePosX, pos.y, pos.z);
 
-            if (pos.x <= _cfg.hudleMinPosX)
+            if (pos.x <= _cfgMgr.hudleMinPosX)
                 initHudlePosX();
         }
     }
@@ -43,9 +45,9 @@ public class HudleManager : MonoBehaviour
         if (_playUI.activeSelf)
         {
             Vector3 pos = tf.position;
-            tf.position = new Vector3(pos.x - _cfg.hudleMovePosX, pos.y, pos.z);
+            tf.position = new Vector3(pos.x - _cfgMgr.hudleMovePosX, pos.y, pos.z);
 
-            if (pos.x <= _cfg.hudleMinPosX)
+            if (pos.x <= _cfgMgr.hudleMinPosX)
                 initHudlePosX(tf);
         }
     }

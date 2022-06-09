@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         _playUI.SetActive(false);
         _endUI.SetActive(true);
 
-        _scMgr.viewEndUIGameScore();
+        _scMgr.viewEndUIGameScore(5);
         _playMgr.setRigidbodySimulate(false);   // 플레이어 물리중력 제어
         // _playMgr.setTriggerDie();
     }

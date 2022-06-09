@@ -12,7 +12,9 @@ public class ConfigManager : MonoBehaviour
 
     // Score
     public string txtScoreNumber { get; set; } = "TxtScoreNumber";
-    public string txtLastScoreNumber { get; set; } = "TxtLastScoreNumber";
+    public string txtLastScoreNumber { get; set; } = "TxtGameOver";
+
+    public int defaultObtainScore = 1;
 
     // AudioSource
     public string audSrcIntro { get; set; } = "Intro";
@@ -38,6 +40,9 @@ public class ConfigManager : MonoBehaviour
     public float hudleMovePosX { get; set; } = 0.01f;
     public float hudleMinPosX { get; set; } = -25.0f;
 
+    // Coin
 
+    public float coinMovePosX { get; set; } = 0.01f;
+    public float coinMinPosX { get; set; } = -6.5f;
 
 }
