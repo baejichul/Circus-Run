@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class ConfigManager : MonoBehaviour
 {
+
+    // Game
+    public Vector2 defaultGravity { get; set; } = new Vector2(0.0f, -9.81f);
+
     // Path
     public string defaultResourceArtPath { get; set; } = "Art";
     public string defaultResourceGUIPath { get; set; } = "GUI";

@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
         _playUI.SetActive(false);
         _endUI.SetActive(false);
 
+        setGravity(_cfgMgr.defaultGravity);
+
         _playMgr.setRigidbodySimulate(false);       // 플레이어 물리중력 제어
         // _sndMgr.Play(_cfgMgr.audSrcIntro);
         _sndMgr.IntroGame();
@@ -80,6 +82,12 @@ public class GameManager : MonoBehaviour
         // _sndMgr.Play("Play");
         _sndMgr.PlayGame();
         SceneManager.LoadScene(_cfgMgr.mainSceneName);
+    }
+
+    // 중력 지정
+    public void setGravity(Vector2 vec)
+    {
+        Physics2D.gravity = vec;
     }
 
     // 버튼의 이미지콤포넌트 이미지 변경하기
