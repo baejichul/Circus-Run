@@ -64,8 +64,6 @@ public class GameManager : MonoBehaviour
     // 게임오버 모드
     public void EndGame()
     {
-        _sndMgr.EndGame();  // 소리 변경
-
         // UI 변경
         _introUI.SetActive(false);
         _playUI.SetActive(false);
@@ -74,13 +72,13 @@ public class GameManager : MonoBehaviour
         _scMgr.viewEndUIGameScore(5);
         _playMgr.setRigidbodySimulate(false);   // 플레이어 물리중력 제어
         // _playMgr.setTriggerDie();
+
+        _sndMgr.EndGame();  // 소리 변경
     }
 
     // 게임 다시 시작
     public void RePlayGame()
-    {
-        // _sndMgr.Play("Play");
-        _sndMgr.PlayGame();
+    {   
         SceneManager.LoadScene(_cfgMgr.mainSceneName);
     }
 
